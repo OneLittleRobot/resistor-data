@@ -1,0 +1,27 @@
+{
+  "name": "resistor-data",
+  "version": "1.0.0",
+  "description": "Tools to calculate resistor data.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OneLittleRobot/resistor-data.git"
+  },
+  "keywords": [
+    "resistors",
+    "electronics"
+  ],
+  "author": "Kevin Thomas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OneLittleRobot/resistor-data/issues"
+  },
+  "homepage": "https://github.com/OneLittleRobot/resistor-data",
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "mocha": "^2.2.4"
+  }
+}
