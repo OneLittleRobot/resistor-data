@@ -14,6 +14,7 @@ const colorToValueMap = {
     'gold': -1,
     'silver': -2
 };
+
 const colorToTolerance = {
     'brown': 1,
     'red': 2,
@@ -32,9 +33,9 @@ const expToSymbolMap = {
     0: '',
 };
 const symbolPowerToMap = {
-    'm': 10 ** 6,
-    'k': 10 ** 3,
-    'r': 10 ** 0,
+    'm': Math.pow(10, 6),
+    'k': Math.pow(10, 3),
+    'r': Math.pow(10, 0),
 };
 const valueToColourMap = makeReverseMap(colorToValueMap);
 const toleranceToColourMap = makeReverseMap(colorToTolerance);
@@ -54,7 +55,7 @@ export function getColorFromValue(value) {
 export function getValueFromColor(color) {
     const value = colorToValueMap[color];
     if (typeof value === 'undefined') {
-        throw new Error(`Invalid colour ${color}`)
+        throw new Error(`Invalid colour ${color}`);
     }
     return value;
 }
@@ -66,8 +67,7 @@ export function getSymbolFromExp(exp) {
 export function getPowerFromSymbol(symbol) {
     const value = symbolPowerToMap[symbol.toLowerCase()];
     if (typeof value === 'undefined') {
-        throw new Error(`Invalid symbol ${symbol}`)
+        throw new Error(`Invalid symbol ${symbol}`);
     }
     return value;
-
 }

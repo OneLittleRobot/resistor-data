@@ -1,27 +1,17 @@
-const findExponentialFor10 = function findExpFor10(value) {
-    const i = 0;
-    const absValue = Math.abs(value);
-    const strValue = absValue.toString();
-    if(strValue.includes('.')){
-        return  - strValue.split('.')[1].length;
-    }else{
-        return strValue.length-1;
-    }
-};
-export {findExponentialFor10 as getExponentialFor10};
-
-const roundToStandard = function roundToStandard(value) {
-    if (value > 0) {
-        return Math.floor(value / 3.0) * 3;
-    } else if (value < 0) {
-        return Math.floor(value / 3.0) * 3;
+export const getExponentialFor10 = (value) => {
+    const strValue = Math.abs(value).toString();
+    if (strValue.includes('.')) {
+        return -strValue.split('.')[1].length;
     } else {
-        return 0;
+        return strValue.length - 1;
     }
 };
-export {roundToStandard};
 
-const makeReverseMap = function makeReverseMap(forwardMap) {
+export const roundToStandard = (value) => {
+    return Math.floor(value / 3) * 3;
+};
+
+export const makeReverseMap = (forwardMap) => {
     const reverseMap = {};
     for (const key in forwardMap) {
         if (forwardMap.hasOwnProperty(key)) {
@@ -30,5 +20,3 @@ const makeReverseMap = function makeReverseMap(forwardMap) {
     }
     return reverseMap;
 };
-
-export {makeReverseMap};

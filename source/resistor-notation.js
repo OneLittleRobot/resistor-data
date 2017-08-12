@@ -1,34 +1,42 @@
-'use strict';
-var utils = require('./utils');
-var maps = require('./maps');
-var decode = function decode(resistorNotaionValue) {
-    var value = resistorNotaionValue || 0;
-    if (typeof value === 'string' && value.trim()) {
-        var match = value.match(/[mkr]/i);
-        var multiplier = 1;
-        if (match) {
-            match = match[0];
-            multiplier = maps.getPowerFromSymbol(match);
-        }
-        var values = value.split(match);
-        if (values.length > 1) {
-            values[1] = '.' + values[1];
-        }
-        return values.join('') * multiplier;
+import {roundToStandard, getExponentialFor10} from './utils';
+import {getPowerFromSymbol, getSymbolFromExp} from './lookups';
+
+const validRegex = /\d+\.?\d*\D?\d*/;
+const matchRegex = /[\D]/i;
+
+export const notationToValue = (notation = '') => {
+
+    if (!validRegex.test(notation)) {
+        throw new Error('Invalid string');
     }
-    return value;
+    let value = notation;
+    if (typeof notation === 'string' && notation.trim()) {
+        let match = matchRegex.exec(notation) || ['r'];
+        const symbol = match[0];
+        const multiplier = getPowerFromSymbol(symbol);
+        value = notation.split(symbol).join('.') * multiplier;
+    }
+    return parseInt(value, 10);
 };
-exports.decode = decode;
-var encode = function encode(value) {
-    var exp = utils.roundToStandard(utils.getExponentialFor10(value));
-    var multiplier = Math.pow(10, exp);
-    var res = (value / multiplier);
-    res = res.toString();
-    if (res.indexOf('.') == '-1') {
-        res = res + maps.getSymbolFromExp(exp);
-    } else {
-        res = res.split('.').join(maps.getSymbolFromExp(exp));
+
+export const valueToNotation = (value) => {
+
+    if (value === '') {
+        throw new Error('Invalid value');
     }
-    return res;
-}
-exports.encode = encode;
+
+    if (isNaN(value)) {
+        throw new Error('Invalid value');
+    }
+
+    const exp = roundToStandard(getExponentialFor10(value));
+    const multiplier = Math.pow(10, exp);
+    const res = (value / multiplier).toString();
+    let notation;
+    if (res.indexOf('.') == '-1') {
+        notation = res + getSymbolFromExp(exp);
+    } else {
+        notation = res.split('.').join(getSymbolFromExp(exp));
+    }
+    return notation;
+};
