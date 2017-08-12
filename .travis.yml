@@ -1,5 +1,12 @@
 sudo: false
 language: node_js
 node_js:
-  - "7"
-  - "8"
+- '7'
+- '8'
+before_deploy:
+- npm run build
+deploy:
+  on:
+    branch: master
+  api_key:
+    secure: Ot50wc4CEpV8tgbzp8me39WFnEWKv0q94VRmSf8h2rJPzXhsGnlxhdI962GAkgvMpPbMOmxZJjr3zqoA7Z5qJs6BMkqKnf5q9fXUmzCpmu3fF+mTogg60qr9vg9YSyZOQuH1p8xzduhKkV3J8FFrxB2wIzqzJkcFZ1QFeIfgE1txPwWYs69zMzHo2TsDo+z5IFjfOfNiphgeAvxjsPyvLI/0hmuSg00Ck/pNDZb8/wkT5pbKFwI6/u3uAYiM26wwgNj/QuxxqJEpndjoSlkSno8y+GyYI0qYNXDQ6gtIgNKO0K90hIfZwHFvwN4BzrXnDJvtzrzJd13ZadwkwcLv66xinQBS/0YGWufP2mL7Bt8jOzwrz7psVf0Yn80mtch7ZmO1aoVJhNCQtouzoX7Sm9MGGks6EDLcF+nKpq1K/JX8OvqLtC+n48etTV6CyQ6va+PuEI7HiaPsLKpJUGoIQ/h1ettmGJSKLEWmVYCmSCubgtY12aKU2RVgGTjL4WXXJLHUWH12w8nWy22aYG9S/WQrjJ4KHtJ7BIIKfS7OYdxvIUz4lOKRDUYz0yQfthco0qdzauRZCYmPoFmK3m5xePOnAodbk4N8F1Lc/fAhOLiEa23GxDjP6Kuxt69gkYBlsbVHTrDEBbrhTiS0jgu7ww5YYaZPhEPQRDvCiunLSWI=
