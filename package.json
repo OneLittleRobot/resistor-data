@@ -4,7 +4,9 @@
   "description": "Tools to calculate resistor data.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec test"
+      "test": "./node_modules/.bin/mocha --compilers js:babel-core/register --reporter spec test",
+      "jshint": "./node_modules/.bin/jshint ./source/**.js ./test/**.js",
+      "build": "./node_modules/.bin/babel ./source --out-dir ./lib"
   },
   "repository": {
     "type": "git",
@@ -21,7 +23,11 @@
   },
   "homepage": "https://github.com/OneLittleRobot/resistor-data",
   "devDependencies": {
-    "chai": "^2.2.0",
-    "mocha": "^2.2.4"
-  }
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "chai": "^4.1.1",
+    "jshint": "^2.9.5",
+    "mocha": "^3.5.0"
+  },
+  "dependencies": {}
 }
