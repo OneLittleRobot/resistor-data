@@ -3,11 +3,13 @@ import {getExponentialFor10} from './utils';
 import {getColorFromTolerance, getValueFromColor, getToleranceFromColor, getColorFromValue} from './lookups';
 
 export const bandsToNotation = (bands = []) => {
+
     if (!Array.isArray(bands)) {
         throw new TypeError('Expected an array');
     } else if (bands.length < 4 || bands.length > 5) {
         throw new Error('A resistor should have 4 or 5 bands');
     }
+
     const clone = bands.slice(0);
     const tolerance = getToleranceFromColor(clone.pop());
     const exp = getValueFromColor(clone.pop());
@@ -36,9 +38,7 @@ export const notationToBands = (data, bands = 5) => {
 
     const exp = getExponentialFor10(value / (digits.join('')));
 
-    return digits.map((item) => {
-        return getColorFromValue(item);
-    }).concat([
+    return digits.map(getColorFromValue).concat([
         getColorFromValue(exp),
         getColorFromTolerance(tolerance)
     ]);

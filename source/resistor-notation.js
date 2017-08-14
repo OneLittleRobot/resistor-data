@@ -9,6 +9,7 @@ export const notationToValue = (notation = '') => {
     if (!validRegex.test(notation)) {
         throw new Error('Invalid string');
     }
+
     let value = notation;
     if (typeof notation === 'string' && notation.trim()) {
         let match = matchRegex.exec(notation) || ['r'];
@@ -21,11 +22,7 @@ export const notationToValue = (notation = '') => {
 
 export const valueToNotation = (value) => {
 
-    if (value === '') {
-        throw new Error('Invalid value');
-    }
-
-    if (isNaN(value)) {
+    if (value === '' || isNaN(value)) {
         throw new Error('Invalid value');
     }
 
