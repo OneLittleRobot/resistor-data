@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  id-token: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -21,6 +24,4 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm publish --provenance --access public
