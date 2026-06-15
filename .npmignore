@@ -68,10 +68,10 @@ typings/
 out
 gen
 /.npmignore
-/.jshintrc
-/source/
+/src/
+/test/
 /.gitignore
 /.editorconfig
-/test/
 /.travis.yml
-/.babelrc
+/.mocharc.json
+/tsconfig.json
